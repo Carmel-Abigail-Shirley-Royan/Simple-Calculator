@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        button{
+            display: block;
+            margin-bottom: 10px;
+        }
+    </style>
+    <script>
+        var num1=parseInt(prompt("Enter thr first number"));
+        var num2=parseInt(prompt("Enter thr first number"));
+        function add(){
+            alert(num1+num2);
+        }
+        function sub(){
+            alert(num1-num2);
+        }
+        function mul(){
+            alert(num1*num2);
+        }function div(){
+            alert(num1/num2);
+        }
+    </script>
+    <body>
+        
+        <button onclick=add() style="cursor: pointer;  padding: 10px 20px; border-radius: 5px; background-color: rgb(93, 166, 249);">+</button>
+        <button onclick=sub() style="cursor: pointer;  padding: 10px 20px; border-radius: 5px; background-color: rgb(93, 166, 249);">-</button>
+        <button onclick=mul() style="cursor: pointer;  padding: 10px 20px; border-radius: 5px; background-color: rgb(93, 166, 249);">*</button>
+        <button onclick=div() style="cursor: pointer;  padding: 10px 20px; border-radius: 5px; background-color: rgb(93, 166, 249);">/</button>
+
+    </body>
+</html>

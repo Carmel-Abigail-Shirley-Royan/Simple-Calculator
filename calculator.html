@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+
+        .calculator {
+            width: 260px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: #333;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        #display {
+            width: 100%;
+            height: 50px;
+            margin-bottom: 20px;
+            text-align: right;
+            padding: 0px;
+            font-size: 24px;
+            border-radius: 5px;
+            border: none;
+            background-color: #fff;
+            color: #333;
+        }
+
+        .button {
+            width: 60px;
+            height: 60px;
+            font-size: 18px;
+            margin: 5px;
+            border: none;
+            border-radius: 5px;
+            background-color: #f1f1f1;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #ddd;
+        }
+
+        .row {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .operator {
+            background-color: #ff9500;
+            color: white;
+        }
+
+        .operator:hover {
+            background-color: #e68a00;
+        }
+
+        .equals {
+            background-color: #33cc33;
+            color: white;
+        }
+
+        .equals:hover {
+            background-color: #28a745;
+        }
+
+        .clear {
+            background-color: #ff3333;
+            color: white;
+        }
+
+        .clear:hover {
+            background-color: #e62e2e;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="calculator">
+        <input type="text" id="display" disabled>
+        
+        <div class="row">
+            <button class="button clear" onclick="clearDisplay()">C</button>
+            <button class="button" onclick="deleteLast()">DEL</button>
+            <button class="button" onclick="appendNumber('.')">.</button>
+            <button class="button operator" onclick="appendOperator('/')">/</button>
+        </div>
+        <div class="row">
+            <button class="button" onclick="appendNumber('7')">7</button>
+            <button class="button" onclick="appendNumber('8')">8</button>
+            <button class="button" onclick="appendNumber('9')">9</button>
+            <button class="button operator" onclick="appendOperator('')"></button>
+        </div>
+        <div class="row">
+            <button class="button" onclick="appendNumber('4')">4</button>
+            <button class="button" onclick="appendNumber('5')">5</button>
+            <button class="button" onclick="appendNumber('6')">6</button>
+            <button class="button operator" onclick="appendOperator('-')">-</button>
+        </div>
+        <div class="row">
+            <button class="button" onclick="appendNumber('1')">1</button>
+            <button class="button" onclick="appendNumber('2')">2</button>
+            <button class="button" onclick="appendNumber('3')">3</button>
+            <button class="button operator" onclick="appendOperator('+')">+</button>
+        </div>
+        <div class="row">
+            <button class="button" onclick="appendNumber('0')">0</button>
+            <button class="button equals" style="width: 125px;" onclick="calculate()">=</button>
+        </div>
+    </div>
+
+    <script>
+        let displayValue = '';
+        
+        // Update the display with the current value
+        function updateDisplay() {
+            document.getElementById('display').value = displayValue;
+        }
+
+        // Append a number to the display
+        function appendNumber(number) {
+            displayValue += number;
+            updateDisplay();
+        }
+
+        // Append an operator (+, -, *, /) to the display
+        function appendOperator(operator) {
+            // Prevent multiple consecutive operators
+            if (displayValue !== '' && !isNaN(displayValue.slice(-1))) {
+                displayValue += operator;
+                updateDisplay();
+            }
+        }
+
+        // Perform the calculation
+        function calculate() {
+            try {
+                // Evaluate the expression using JavaScript's eval function
+                displayValue = eval(displayValue).toString();
+                updateDisplay();
+            } catch (error) {
+                displayValue = 'Error';
+                updateDisplay();
+            }
+        }
+
+        // Clear the display
+        function clearDisplay() {
+            displayValue = '';
+            updateDisplay();
+        }
+
+        // Delete the last character from the display
+        function deleteLast() {
+            displayValue = displayValue.slice(0, -1);
+            updateDisplay();
+        }
+    </script>
+
+</body>
+</html>
